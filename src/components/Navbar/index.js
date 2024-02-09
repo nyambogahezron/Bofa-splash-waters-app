@@ -14,7 +14,7 @@ const Navbar = () => {
       if (NavbarPosition > 120) {
         setNavFixed("navFixed");
       } else {
-        setNavFixed("notfixed");
+        setNavFixed("notFixed");
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -26,7 +26,9 @@ const Navbar = () => {
 
   return (
     <div className="h-32 ">
-      <header className={`navbar transition-all animate__bounceInDown ${is_NavFixed}`}>
+      <header
+        className={`navbar transition-all animate__bounceInDown ${is_NavFixed}`}
+      >
         <div className="logo">
           <img src={logo} alt="bofa-logo" />
         </div>
@@ -36,7 +38,7 @@ const Navbar = () => {
               {Navbar_Links.map((item) => {
                 const { id, name, path } = item;
                 return (
-                  <li className='hover:text-white'  key={id}>
+                  <li className="hover:text-white" key={id}>
                     <Link to={path}>{name}</Link>
                   </li>
                 );
