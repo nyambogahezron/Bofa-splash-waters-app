@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    font-family: "Poppins", system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 }
 
@@ -17,6 +17,9 @@
   }
   .navbar {
     @apply flex relative justify-between w-full p-5 text-text-blue font-medium;
+  }
+  .card {
+    @apply flex flex-col basis-[32.33%] h-[200px] p-4 rounded-[20px]  transition-all bg-blue hover:bg-text-blue-2 text-white gap-2 border-2 border-clr-grey-1 shadow-xl hover:shadow-2xl text-ellipsis;
   }
 }
 
@@ -35,8 +38,9 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   position: relative;
+  background-color: #fff;
   height: 100vh;
   width: 100vw;
   font-weight: 400;
@@ -50,6 +54,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 html {
@@ -75,20 +80,20 @@ ul li {
   z-index: 10;
 }
 .title::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 15%;
+  width: 20%;
   height: 4px;
   background: #a00;
 }
 .title::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -20px;
   left: 0;
-  width: 7%;
+  width: 10%;
   height: 4px;
   background: #a00;
 }
@@ -200,6 +205,6 @@ nav ul > li {
 }
 
 .hero-info .left {
-  background: url("./assets/images/hero-bg.png");
+  background: url('./assets/images/hero-bg.png');
   background-position: right;
 }
