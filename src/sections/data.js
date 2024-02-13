@@ -17,7 +17,7 @@ const cardsData = [
     element: 'Potassium K',
     quantity: '2.11 mg/L',
     body: 'This mineral is  important for many processes throughout the bod.',
-    extendClasses: 'bg-red-600',
+    extendClasses: 'bg-text-blue-2',
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ const cardsData = [
     element: 'pH',
     quantity: '6.92mg/L',
     body: 'The pH value is a good indicator of whether water is hard or soft. The pH of pure water is 7.',
-    extendClasses: 'bg-red-600',
+    extendClasses: 'bg-text-blue-2',
   },
   {
     id: 6,

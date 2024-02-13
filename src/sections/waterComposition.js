@@ -8,11 +8,11 @@ const waterComposition = () => {
         water composition
         <span className='title-s shadow-md '>Premium Water</span>
       </h2>
-      <div className='wrapper flex flex-row w-full gap-4'>
+      <div className='wrapper flex flex-row md:flex-col w-full gap-4'>
         <div className='left basis-1/4'>
-          <img className='h-full' src={heroImg} alt='' />
+          <img className='h-full' src={heroImg} alt='water composition' />
         </div>
-        <div className='flex flex-row flex-wrap w-full gap-2 p-4'>
+        <div className='grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-2 w-full gap-2 p-4'>
           {cardsData.map((item) => {
             const { id, element, quantity, body, extendClasses } = item;
 

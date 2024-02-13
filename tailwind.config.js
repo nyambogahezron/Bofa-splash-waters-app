@@ -36,6 +36,9 @@ export default {
         sans: ["Poppins", "sans-serif"],
         serif: ["Merriweather", "serif"],
       },
+      boxShadow: {
+        'custom': '-2px 11px 5px 5px rgba(255,255,255,0.75)',
+      },
     },
   },
   plugins: [],
