@@ -2,211 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
 @layer base {
-	html {
-		font-family: 'Poppins', system-ui, sans-serif;
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 0 0% 3.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 0 0% 3.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 0 0% 3.9%;
+		--primary: 0 0% 9%;
+		--primary-foreground: 0 0% 98%;
+		--secondary: 0 0% 96.1%;
+		--secondary-foreground: 0 0% 9%;
+		--muted: 0 0% 96.1%;
+		--muted-foreground: 0 0% 45.1%;
+		--accent: 0 0% 96.1%;
+		--accent-foreground: 0 0% 9%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 89.8%;
+		--input: 0 0% 89.8%;
+		--ring: 0 0% 3.9%;
+
+		--radius: 0.5rem;
+	}
+	.dark {
+		--background: 0 0% 3.9%;
+		--foreground: 0 0% 98%;
+		--card: 0 0% 3.9%;
+		--card-foreground: 0 0% 98%;
+		--popover: 0 0% 3.9%;
+		--popover-foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 9%;
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 0 0% 14.9%;
+		--muted-foreground: 0 0% 63.9%;
+		--accent: 0 0% 14.9%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 14.9%;
+		--input: 0 0% 14.9%;
+		--ring: 0 0% 83.1%;
 	}
 }
 
-@layer components {
-	.btn {
-		@apply p-4 h-14 w-36 text-white text-center font-medium tracking-normal text-base border border-white border-opacity-35 transition-all;
+@layer base {
+	* {
+		@apply border-border;
 	}
-	.btn-primary {
-		@apply py-2 px-5 bg-bg-primary text-white font-semibold shadow-lg hover:bg-crl-white-1  hover:border-2 hover:text-black focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
+	body {
+		@apply bg-background text-foreground;
 	}
-	.navbar {
-		@apply flex relative justify-between w-full p-5 text-text-blue font-medium;
-	}
-	.card {
-		@apply flex flex-col basis-[32.33%] p-4 rounded-[20px]  transition-all bg-blue hover:bg-text-blue-2 text-white gap-2 border-2 border-clr-grey-1 shadow-xl hover:shadow-2xl text-ellipsis;
-	}
-}
-
-/*
-###############################
------> GLOBAL STYLING <-------- 
-###############################
-*/
-
-*,
-::after,
-::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	font-family: 'Poppins', sans-serif;
-	position: relative;
-	background-color: #f3f4f6;
-	height: 100vh;
-	width: 100vw;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 30px;
-	overflow-x: hidden;
-}
-.container {
-	margin: 0 auto;
-	max-width: 1000vw;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-html {
-	scroll-behavior: smooth;
-}
-
-a {
-	text-decoration: none;
-}
-a:hover {
-	cursor: pointer;
-}
-ul li {
-	list-style: none;
-}
-
-.title {
-	position: relative;
-	font-size: 28px;
-	font-weight: 700;
-	color: #30d8fb;
-	text-transform: capitalize;
-	z-index: 10;
-}
-.title::after {
-	content: '';
-	position: absolute;
-	bottom: -10px;
-	left: 0;
-	width: 80px;
-	height: 4px;
-	background: #a00;
-}
-.title::before {
-	content: '';
-	position: absolute;
-	bottom: -20px;
-	left: 0;
-	width: 40px;
-	height: 4px;
-	background: #a00;
-}
-
-.title-s {
-	position: absolute;
-	top: -18px;
-	left: 0;
-	font-size: 40px;
-	font-weight: 800;
-	color: #767676;
-	z-index: -10;
-	opacity: 0.1;
-}
-
-/*
-###############################
------> HOME STYLING <-------- 
-###############################
-*/
-
-#home {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	background: url(./assets/images/bg-image.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-/*navbar*/
-nav ul > li {
-	font-weight: 600;
-	font-size: 16px;
-	transition: all 0.2s ease;
-}
-
-.navFixed {
-	position: fixed;
-	z-index: 99;
-	top: 0;
-	background: #292e97;
-	height: 80px;
-}
-.navFixed .nav_links li {
-	color: #fff;
-}
-
-.navFixed .nav_links li:hover {
-	color: #a00;
-}
-
-.logo img {
-	position: relative;
-	margin-top: -20px;
-	max-height: 130px;
-	padding: 0;
-}
-.navFixed .logo img {
-	height: 90px;
-	margin-top: -25px;
-	left: -20px;
-}
-.logo img:hover {
-	cursor: pointer;
-}
-
-/*Hero*/
-
-.hero {
-	position: relative;
-	justify-content: center;
-	display: grid;
-	height: 100%;
-	grid-template-columns: 2fr 2fr;
-	margin-top: 35px;
-}
-.hero .left {
-	margin-top: -20px;
-	margin-left: 150px;
-	padding: 10px;
-}
-.hero-text {
-	position: relative;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	gap: 8px;
-	font-size: 55px;
-	align-items: flex-start;
-	color: rgb(0, 83, 167);
-	text-align: center;
-	line-height: 41px;
-	letter-spacing: 0px;
-	font-weight: 800;
-	margin-bottom: 30px;
-}
-
-.hero .right {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 40px;
-	margin-top: -20px;
-}
-.hero .right img {
-	height: 400px;
-}
-
-.hero-info .left,
-#fast_delivery .left {
-	background: url('./assets/images/hero-bg.png');
-	background-position: right;
-	background-repeat: round;
 }
