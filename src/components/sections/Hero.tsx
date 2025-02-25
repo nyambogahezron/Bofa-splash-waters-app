@@ -1,47 +1,155 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+'use client';
+
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+const heroSlides = [
+	{
+		title: 'Professionally treated water, all over the house',
+		description:
+			'Vivamus non posuere nisl, id auctor ligula. vitae lobortis nisi',
+		image:
+			'https://images.unsplash.com/photo-1553564552-02656d6a2390?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2F0ZXIlMjBib3R0bGV8ZW58MHx8MHx8fDA%3D',
+	},
+	{
+		title: 'Advanced Water Purification Technology',
+		description:
+			'State-of-the-art filtration systems for the purest water quality',
+		image:
+			'https://plus.unsplash.com/premium_photo-1705969351341-f34f843d7a32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdhdGVyJTIwYm90dGxlfGVufDB8fDB8fHww',
+	},
+	{
+		title: 'Smart Water Management Solutions',
+		description: 'Intelligent monitoring and control for optimal water quality',
+		image:
+			'https://images.unsplash.com/photo-1563351672-62b74891a28a?w=800&q=80',
+	},
+];
 
 export default function Hero() {
-	return (
-		<section className='relative min-h-screen bg-[#F5F9FF] overflow-hidden'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32'>
-				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8 }}
-					>
-						<h1 className='text-4xl md:text-6xl font-bold text-gray-900 mb-6'>
-							Professionally treated water, all over the house
-						</h1>
-						<p className='text-lg text-gray-600 mb-8'>
-							Vivamus non posuere nisl, id auctor ligula. vitae lobortis nisi
-						</p>
-						<Button
-							size='lg'
-							className='bg-[#0099FF] hover:bg-blue-600 text-white px-8'
-						>
-							Find Solution
-						</Button>
-					</motion.div>
+	const [currentSlide, setCurrentSlide] = useState(0);
 
-					<motion.div
-						initial={{ opacity: 0, x: 20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
-						className='relative'
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+		}, 10000);
+
+		return () => clearInterval(timer);
+	}, []);
+
+	const nextSlide = () => {
+		setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+	};
+
+	const prevSlide = () => {
+		setCurrentSlide(
+			(prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+		);
+	};
+
+	return (
+		<section className='flex relative bg-[#d7eeff] overflow-x-hidden min-h-[calc(100dvh-(5rem))] justify-center items-center '>
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 items-center justify-center flex relative'>
+				<div className='relative'>
+					<AnimatePresence mode='wait'>
+						<motion.div
+							key={currentSlide}
+							className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100dvh-(5rem))] relative'
+						>
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8, delay: 0.3 }}
+								className='space-y-6 pl-8'
+							>
+								<h1 className='text-5xl md:text-6xl mt-20 md:-mt-20 font-bold text-gray-900 mb-6'>
+									{heroSlides[currentSlide].title}
+								</h1>
+								<p className='text-lg text-gray-600 mb-8'>
+									{heroSlides[currentSlide].description}
+								</p>
+								<Button
+									size='lg'
+									className='bg-blue hover:bg-blue-600 text-white px-10 py-6 transition-all hover:shadow-lg hover:bg-blue-600 hover:border-white'
+								>
+									Find Solution
+								</Button>
+							</motion.div>
+
+							<motion.div
+								initial={{ opacity: 0, x: 20 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ duration: 0.8, delay: 0.5 }}
+								className='relative h-[90%] overflow-hidden'
+							>
+								<Image
+									src={heroSlides[currentSlide].image}
+									alt='Water Purifier'
+									width={600}
+									height={550}
+									className='rounded-lg w-full h-full object-cover'
+								/>
+								<div className='absolute inset-0 bg-blue-500  rounded-lg'></div>
+							</motion.div>
+						</motion.div>
+					</AnimatePresence>
+
+					{/*  slider controls */}
+					{/* prev */}
+					<button
+						onClick={prevSlide}
+						className='absolute -left-14 top-1/3 mt-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors'
 					>
-						<Image
-							src='https://images.unsplash.com/photo-1519873174361-37788c5a73c7?q=80&w=2141&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-							alt='Water Purifier'
-							width={600}
-							height={600}
-							className='rounded-lg'
-						/>
-						<div className='absolute inset-0 bg-blue-500/10 rounded-lg'></div>
-					</motion.div>
+						<svg
+							className='w-8 h-8 text-blue'
+							fill='none'
+							stroke='currentColor'
+							viewBox='0 0 24 24'
+						>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								strokeWidth={2}
+								d='M15 19l-7-7 7-7'
+							/>
+						</svg>
+					</button>
+
+					{/* next */}
+					<button
+						onClick={nextSlide}
+						className='absolute -right-14 t-4 top-1/3 mt-10 - -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors'
+					>
+						<svg
+							className='w-6 h-6'
+							fill='none'
+							stroke='currentColor'
+							viewBox='0 0 24 24'
+						>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								strokeWidth={2}
+								d='M9 5l7 7-7 7'
+							/>
+						</svg>
+					</button>
+
+					{/* slide indicators */}
+
+					<div className='absolute bottom-24 left-1/4 transform -translate-x-1/2 flex space-x-2'>
+						{heroSlides.map((_, index) => (
+							<button
+								key={index}
+								className={`w-2 h-2 rounded-full transition-all duration-300 ${
+									currentSlide === index ? 'bg-[#0099FF] w-4' : 'bg-gray-300'
+								}`}
+								onClick={() => setCurrentSlide(index)}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 
